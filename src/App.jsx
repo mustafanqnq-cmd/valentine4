@@ -7,7 +7,7 @@ export default function App() {
   const moveButton = () => {
     const x = Math.random() * 80;
     const y = Math.random() * 80;
-    setPos({ left: ${x}%, top: ${y}% });
+    setPos({ left: `${x}%`, top: `${y}%` });
   };
 
   if (celebrated) {
