@@ -1,101 +1,57 @@
-import { useState } from "react";
-import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
-import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية لمحبوبتي نرجس</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #ffdef2; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; }
+        .container { text-align: center; background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 95%; max-width: 450px; }
+        #noButton { position: absolute; transition: all 0.3s ease; z-index: 10; }
+        img { width: 180px; height: auto; margin: 0 auto 1.5rem; border-radius: 15px; }
+        .btn { padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; font-size: 1.1rem; }
+        .yes-btn { background-color: #ff4d6d; color: white; }
+        .no-btn { background-color: #f3f4f6; color: #4b5563; }
+        .poem-text { font-size: 0.95rem; color: #4b5563; line-height: 1.8; margin-top: 15px; font-style: italic; }
+    </style>
+</head>
+<body>
 
-export default function Page() {
-  const [noCount, setNoCount] = useState(0);
-  const [yesPressed, setYesPressed] = useState(false);
-  const yesButtonSize = noCount * 20 + 16;
-
-  const handleNoClick = () => {
-    setNoCount(noCount + 1);
-  };
-
-  const getNoButtonText = () => {
-    const phrases = [
-      "No",
-      "Are you sure?",
-      "Really sure?",
-      "Think again!",
-      "Last chance!",
-      "Surely not?",
-      "You might regret this!",
-      "Give it another thought!",
-      "Are you absolutely certain?",
-      "This could be a mistake!",
-      "Have a heart!",
-      "Don't be so cold!",
-      "Change of heart?",
-      "Wouldn't you reconsider?",
-      "Is that your final answer?",
-      "You're breaking my heart ;(",
-      "Is that your final answer?",
-      "You're breaking my heart ;(",
-      "Plsss? :( You're breaking my heart",
-    ];
-
-    return phrases[Math.min(noCount, phrases.length - 1)];
-  };
-
-  return (
-    <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
-      {yesPressed ? (
-        <>
-          <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
-          <div className="text-4xl md:text-6xl font-bold my-4">
-            Ok Yayyyyy!!!
-          </div>
-        </>
-      ) : (
-        <>
-          <img
-            src={lovesvg}
-            className="fixed animate-pulse top-10 md:left-24 left-6 md:w-40 w-28"
-          />
-          <img
-            src={lovesvg2}
-            className="fixed bottom-16 -z-10 animate-pulse md:right-24 right-10 md:w-40 w-32"
-          />
-          <img
-            className="h-[230px] rounded-lg shadow-lg"
-            src="https://gifdb.com/images/high/cute-Love-bear-roses-ou7zho5oosxnpo6k.gif"
-          />
-          <h1 className="text-4xl md:text-6xl my-4 text-center">
-            Will you be my Valentine?
-          </h1>
-          <div className="flex flex-wrap justify-center gap-2 items-center">
-            <button
-              className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
-              style={{ fontSize: yesButtonSize }}
-              onClick={() => setYesPressed(true)}
-            >
-              Yes
-            </button>
-            <button
-              onClick={handleNoClick}
-              className=" bg-rose-500 hover:bg-rose-600 rounded-lg text-white font-bold py-2 px-4"
-            >
-              {noCount === 0 ? "No" : getNoButtonText()}
-            </button>
-          </div>
-        </>
-      )}
-      <Footer />
+    <div class="container" id="mainCard">
+        <img id="statusImg" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3cjZidWp3ZXh0bmpxZzRyeGZ5amIxdG40eGZ6ZzRyeGZ5amIxdG4mZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/c76IJLufpN762clMc5/giphy.gif" alt="Hello Kitty">
+        
+        <h1 id="question" class="text-2xl font-bold text-pink-600 mb-8">نرجس.. تحبين مصطفى لو لا؟ 🥺❤️</h1>
+        
+        <div class="flex justify-center gap-6">
+            <button id="yesButton" class="btn yes-btn" onclick="celebrate()">اي</button>
+            <button id="noButton" class="btn no-btn" onmouseover="moveButton()" onclick="moveButton()">لا</button>
+        </div>
     </div>
-  );
-}
 
-const Footer = () => {
-  return (
-    <a
-      className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300"
-      href="https://github.com/Xeven777/valentine"
-      target="__blank"
-    >
-      Made with{" "}
-      <span role="img" aria-label="heart">
-        ❤️
-      </span>
-    </a>
-  );
-};
+    <script>
+        // دالة تحريك زر "لا" للهروب
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+            const btn = document.getElementById('noButton');
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // دالة الاحتفال عند الضغط على "اي"
+        function celebrate() {
+            const card = document.getElementById('mainCard');
+            card.innerHTML = 
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHYxdnF4ZzRyeGZ5amIxdG40eGZ6ZzRyeGZ5amIxdG4mZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/L4lvBpHWk_Ukg6pPh6/giphy.gif">
+                <h1 class="text-2xl font-bold text-pink-600 mb-2">اعشقچ واحبچ! ❤️</h1>
+                <div class="poem-text">
+                    رأفت يوسف جمالك.. الأقوال وراك فانتتنت بك الغواني <br>
+                    ومن الإله بلاد الجمال تجملاً.. حتى كأنك للجمال كباني
+                </div>
+                <button class="btn yes-btn mt-6" onclick="location.reload()">أحبك مرة ثانية</button>
+            ;
+        }
+    </script>
+</body>
+</html>
